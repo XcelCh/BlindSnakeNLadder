@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Player {
-    private int location;
-    private String name;
+public class Ladder {
+    private int start;
+    private int end;
 }
