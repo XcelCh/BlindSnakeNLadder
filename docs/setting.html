@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Blind Snake & Ladder</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container bg-dark d-flex min-vh-100 min-vw-100 align-items-center justify-content-center text-white text-center">
+            <form action="index.html">
+                <h1 class="mb-5">Settings</h1>
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label">Map Length</label>
+                        <input type="range" class="form-range" min="8" max="12" value="8" step="1" id="xAxis" oninput="displaySliderVal(this.value, 'xVal')">
+                        <p>Value: <span id="xVal"></span></p>
+                    </div>
+
+                    <div class="col">
+                        <label class="form-label">Map Height</label>
+                        <input type="range" class="form-range" min="8" max="12" value="8" step="1" id="yAxis" oninput="displaySliderVal(this.value, 'yVal')">
+                        <p>Value: <span id="yVal"></span></p>
+                    </div>
+                </div>
+
+                <label class="form-label mt-3">Number of Player</label>
+                <input type="range" class="form-range" min="1" max="4" value="2" step="1" id="player" oninput="displaySliderVal(this.value, 'playerVal')">
+                <p>Value: <span id="playerVal"></span></p>
+
+                <label class="form-label mt-3">Number of Snake</label>
+                <input type="range" class="form-range" min="0" max="10" value="4" step="1" id="snake" oninput="displaySliderVal(this.value, 'snakeVal')">
+                <p>Value: <span id="snakeVal"></span></p>
+                
+                <label class="form-label mt-3">Number of Ladder</label>
+                <input type="range" class="form-range" min="0" max="10" value="4" step="1" id="ladder" oninput="displaySliderVal(this.value, 'ladderVal')">
+                <p>Value: <span id="ladderVal"></span></p>
+
+                <label class="form-label mt-3">Number of Eagle</label>
+                <input type="range" class="form-range" min="0" max="10" value="4" step="1" id="eagle" oninput="displaySliderVal(this.value, 'eagleVal')">
+                <p>Value: <span id="eagleVal"></span></p>
+
+                <div class="row">
+                    <div class="col">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Save" onclick="saveSetting()">
+                    </div>
+
+                    <div class="col">
+                        <input class="btn btn-primary btn-lg" type="reset" value="Cancel" onclick="location.href='index.html';">
+                    </div>
+                </div>
+                
+
+            </form>
+        </div>
+
+        <script>
+            if(localStorage.length == 0){
+                localStorage.setItem("xAxis", document.getElementById("xAxis").value);
+                localStorage.setItem("yAxis", document.getElementById("yAxis").value);
+                localStorage.setItem("player", document.getElementById("player").value);
+                localStorage.setItem("snake", document.getElementById("snake").value);
+                localStorage.setItem("ladder", document.getElementById("ladder").value);
+                localStorage.setItem("eagle", document.getElementById("eagle").value);
+            } else {
+                document.getElementById("xAxis").value = localStorage.getItem('xAxis');
+                document.getElementById("yAxis").value = localStorage.getItem('yAxis');
+                document.getElementById("player").value = localStorage.getItem('player');
+                document.getElementById("snake").value = localStorage.getItem('snake');
+                document.getElementById("ladder").value = localStorage.getItem('ladder');
+                document.getElementById("eagle").value = localStorage.getItem('eagle');
+            }
+
+            document.getElementById("xVal").innerHTML = localStorage.getItem('xAxis');
+            document.getElementById("yVal").innerHTML = localStorage.getItem('yAxis');
+            document.getElementById("playerVal").innerHTML = localStorage.getItem('player');
+            document.getElementById("snakeVal").innerHTML = localStorage.getItem('snake');
+            document.getElementById("ladderVal").innerHTML = localStorage.getItem('ladder');
+            document.getElementById("eagleVal").innerHTML = localStorage.getItem('eagle');
+
+            function displaySliderVal(val, id) {
+              document.getElementById(id).innerHTML = val;
+            }
+
+            function saveSetting(){
+                localStorage.setItem("xAxis", document.getElementById("xAxis").value);
+                localStorage.setItem("yAxis", document.getElementById("yAxis").value);
+                localStorage.setItem("player", document.getElementById("player").value);
+                localStorage.setItem("snake", document.getElementById("snake").value);
+                localStorage.setItem("ladder", document.getElementById("ladder").value);
+                localStorage.setItem("eagle", document.getElementById("eagle").value);
+            }
+
+        </script>
+    </body>
+</html>
