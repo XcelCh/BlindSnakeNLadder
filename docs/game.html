@@ -19,7 +19,10 @@
 
             <div class="row my-5">
                 <div class="col d-flex align-items-center justify-content-center">
-                    <button type="button" class="btn btn-primary btn-lg">Roll</button>
+                    <button type="button" class="btn btn-primary btn-lg" onclick="roll()">Roll</button>
+                    <span class="dice" id="die1" hidden="hidden"></span>
+                    <span class="dice" id="die2" hidden="hidden"></span>
+                    <h1 id="diceResult" hidden="hidden">Hello</h1>
                 </div>
 
                 <div class="col d-flex align-items-center justify-content-center">
@@ -35,7 +38,31 @@
                 for(let j = 0; j < localStorage.getItem("xAxis"); j++){
                     newRow.insertCell();
                 }
-                
+            }
+
+            function roll(){
+                let total = 0;
+
+                for(let ele of document.getElementsByClassName("dice")){
+                    ele.removeAttribute("hidden");
+                    total += getRndInteger(1, 7);
+                    console.log(total);
+                }
+
+                let diceResult = document.getElementById("diceResult")
+                diceResult.innerHTML = total;
+                diceResult.removeAttribute("hidden");
+            }
+
+            // min included, max excluded
+            function getRndInteger(min, max) {
+                const range = max - min + 1;
+                const randomBytes = new Uint32Array(1);
+
+                window.crypto.getRandomValues(randomBytes);
+                const randomValue = randomBytes[0] / (0xffffffff + 1);
+
+                return Math.floor(min + randomValue * range);
             }
         </script>
     </body>
